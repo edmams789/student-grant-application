@@ -9,6 +9,10 @@ public class Person {
     private String patronymic; //отчество
     private LocalDate dateOfBirth;
     private Address address;
+
+    public Person() {
+        System.out.println("Person is created");
+    }    
     
     public String getPersonString() {
         return surname + " " + givenName;
