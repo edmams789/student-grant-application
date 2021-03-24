@@ -1,16 +1,13 @@
 package com.borisov.subsidyApplication;
 
+import com.borisov.subsidyApplication.dmain.Adult;
 import com.borisov.subsidyApplication.dmain.StudentOrder;
 
 public class SaveStudentOrder {
 
     public static void main(String[] args) {
         StudentOrder so = new StudentOrder();
-        so.sethFirstName("Aleksey");
-        so.sethLastName("Petrov");
-        so.setwFirstName("Galina");
-        so.setwLastName("Petrova");
-        
+
         System.out.println("SaveStudentOrder is running");
         long ans = saveStudentOrder(so);
         System.out.println(ans);
@@ -19,8 +16,17 @@ public class SaveStudentOrder {
 
     static long saveStudentOrder(StudentOrder studentOrder) {
         long answer = 199;
-        System.out.println("saveStudentOrder: " + studentOrder.gethFirstName());
-        
+        System.out.println("saveStudentOrder");
+
         return answer;
+    }
+
+    static StudentOrder buildStudentOrder() {
+        StudentOrder so = new StudentOrder();
+        Adult husband = new Adult();
+        husband.setGivenName("Андрей");
+        so.setHusband(husband);
+
+        return so;
     }
 }

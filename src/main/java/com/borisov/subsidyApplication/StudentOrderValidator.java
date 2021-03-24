@@ -84,9 +84,7 @@ public class StudentOrderValidator {
 
     static AnswerCityRegister checkCityRegister(StudentOrder so) {
         CityRegisterValidator crv1 = new CityRegisterValidator();
-//        crv1.hostName = "Host1";
-//        crv1.login = "Login1";
-//        crv1.password = "Password1";
+
         AnswerCityRegister acr1 = crv1.checkCityRegister(so);
         return acr1;
     }
