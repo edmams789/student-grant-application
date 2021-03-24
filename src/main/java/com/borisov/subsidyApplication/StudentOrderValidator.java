@@ -22,37 +22,6 @@ public class StudentOrderValidator {
         checkAll();
     }
 
-//    static void checkAll() {
-//
-//        while (true) {
-//            StudentOrder so = readStudentOrder();
-//
-//            if (so == null) {
-//                return; // выходим из метода
-//            } else {
-//
-//                AnswerCityRegister cityAnswer = checkCityRegister(so);
-//                AnswerWedding wedAnswer = checkWedding(so);
-//                AnswerChildren childAnswer = checkChildren(so);
-//                AnswerStudent studentAnswer = checkStudent(so);
-//
-//                sendMail(so);
-//            }
-//        }
-//    }
-//    static void checkAll() {
-//        StudentOrder so = readStudentOrder();
-//        while (so != null) {
-//
-//                AnswerCityRegister cityAnswer = checkCityRegister(so);
-//                AnswerWedding wedAnswer = checkWedding(so);
-//                AnswerChildren childAnswer = checkChildren(so);
-//                AnswerStudent studentAnswer = checkStudent(so);
-//
-//                sendMail(so);
-//                so = readStudentOrder();            
-//        }
-//    }
     static void checkAll() {
 
         while (true) {
