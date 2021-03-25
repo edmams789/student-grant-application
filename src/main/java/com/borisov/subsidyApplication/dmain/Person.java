@@ -4,19 +4,23 @@ import java.time.LocalDate;
 
 public abstract class Person {
     
-    protected String surname; //фамилия
-    protected String givenName; //собственное имя
+    private String surname; //фамилия
+    private String givenName; //собственное имя
     private String patronymic; //отчество
     private LocalDate dateOfBirth;
     private Address address;
 
     public Person() {
-        System.out.println("Person is created");
-    }    
-    
-    public String getPersonString() {
-        return surname + " " + givenName;
     }
+    
+    public Person(String surname, String givenName, String patronymic, LocalDate dateOfBirth) {
+        this.surname = surname;
+        this.givenName = givenName;
+        this.patronymic = patronymic;
+        this.dateOfBirth = dateOfBirth;
+    }
+    
+    
 
     public String getSurname() {
         return surname;

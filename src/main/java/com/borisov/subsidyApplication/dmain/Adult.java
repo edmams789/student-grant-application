@@ -12,12 +12,11 @@ public class Adult extends Person {
     private String studentId;
 
     public Adult() {
-        System.out.println("Adult is created");
     }
-        
-    public String getPersonString() {
-        return surname + " " + givenName + " " + passportNumber;
-    }
+    
+    public Adult(String surname, String givenName, String patronymic, LocalDate dateOfBirth) {
+        super(surname, givenName, patronymic, dateOfBirth);
+    }   
 
     public String getPassportSeria() {
         return passportSeria;
