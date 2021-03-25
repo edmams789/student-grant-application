@@ -6,6 +6,7 @@ import com.borisov.subsidyApplication.dmain.StudentOrder;
 public class CityRegisterValidator {
     
     String hostName;
+    protected int port;
     String login;
     String password;
 

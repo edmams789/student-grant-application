@@ -2,7 +2,7 @@ package com.borisov.subsidyApplication.dmain;
 
 import java.time.LocalDate;
 
-public class Person {
+public abstract class Person {
     
     protected String surname; //фамилия
     protected String givenName; //собственное имя

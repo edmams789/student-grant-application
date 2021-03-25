@@ -6,7 +6,7 @@ import com.borisov.subsidyApplication.dmain.StudentOrder;
 public class SaveStudentOrder {
 
     public static void main(String[] args) {
-        buildStudentOrder();
+//        buildStudentOrder();
         
 //        StudentOrder so = new StudentOrder();
 //        System.out.println("SaveStudentOrder is running");
@@ -21,19 +21,11 @@ public class SaveStudentOrder {
         return answer;
     }
 
-    static StudentOrder buildStudentOrder() {
+    static StudentOrder buildStudentOrder(long id) {
         StudentOrder so = new StudentOrder();
+        so.setStudentOrderId(id);
         
-        Adult husband = new Adult();
         
-//        husband.setGivenName("Андрей");
-//        husband.setSurname("Petrov");
-//        husband.setPassportNumber("123456");
-//        so.setHusband(husband);
-//        
-//        String ans = husband.getPersonString();
-//        System.out.println(ans);
-
         return so;
     }
 }
