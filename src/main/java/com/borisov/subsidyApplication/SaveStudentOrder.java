@@ -6,7 +6,7 @@ import com.borisov.subsidyApplication.dmain.StudentOrder;
 public class SaveStudentOrder {
 
     public static void main(String[] args) {
-//        buildStudentOrder();
+        buildStudentOrder(10);
         
 //        StudentOrder so = new StudentOrder();
 //        System.out.println("SaveStudentOrder is running");
@@ -23,9 +23,15 @@ public class SaveStudentOrder {
 
     static StudentOrder buildStudentOrder(long id) {
         StudentOrder so = new StudentOrder();
-        so.setStudentOrderId(id);
-        
+        so.setStudentOrderId(id);  
+        StudentOrder so1 = so;
+        printStudentOrder(so1);
         
         return so;
+    }
+    
+    static void printStudentOrder(StudentOrder stOr) {
+        System.out.println(stOr.getStudentOrderId());
+        
     }
 }

@@ -5,15 +5,23 @@ import com.borisov.subsidyApplication.dmain.StudentOrder;
 
 public class CityRegisterValidator {
     
-    String hostName;
-    protected int port;
-    String login;
-    String password;
+    private String hostName;
+    private int port;
+    private String login;
+    private String password;
+    
+    private CityRegisterChecker personChecker;
+
+    public CityRegisterValidator() {
+        personChecker = new RealCityRegisterChecker();
+    }    
 
     public AnswerCityRegister checkCityRegister(StudentOrder so) {
-        System.out.println("CityRegister is running: " + hostName + ", " + login + ", " + password);
+        personChecker.checkPerson(so.getHusband());
+        personChecker.checkPerson(so.getWife());
+        personChecker.checkPerson(so.getChild());
+        
         AnswerCityRegister ans = new AnswerCityRegister();
-        ans.success = false;
         return ans;
     }
 }
