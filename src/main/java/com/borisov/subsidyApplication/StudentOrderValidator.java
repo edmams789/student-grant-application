@@ -41,13 +41,7 @@ public class StudentOrderValidator {
 
         StudentOrder[] soArray = readStudentOrders();
 
-//        for(int c = 0; c < soArray.length; c++) {
-//            System.out.println();
-//            checkOneOrder(soArray[c]);
-//        }
-
         for(StudentOrder so : soArray) {
-            System.out.println();
             checkOneOrder(so);
         }
     }
@@ -64,9 +58,9 @@ public class StudentOrderValidator {
     public void checkOneOrder(StudentOrder so) {
         AnswerCityRegister cityAnswer = checkCityRegister(so);
 
-        AnswerWedding wedAnswer = checkWedding(so);
-        AnswerChildren childAnswer = checkChildren(so);
-        AnswerStudent studentAnswer = checkStudent(so);
+//        AnswerWedding wedAnswer = checkWedding(so);
+//        AnswerChildren childAnswer = checkChildren(so);
+//        AnswerStudent studentAnswer = checkStudent(so);
 
         sendMail(so);
     }

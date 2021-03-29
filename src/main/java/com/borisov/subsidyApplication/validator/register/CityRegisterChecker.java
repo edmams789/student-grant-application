@@ -1,4 +1,4 @@
-package com.borisov.subsidyApplication.validator;
+package com.borisov.subsidyApplication.validator.register;
 
 import com.borisov.subsidyApplication.dmain.CityRegisterCheckerResponse;
 import com.borisov.subsidyApplication.dmain.Person;

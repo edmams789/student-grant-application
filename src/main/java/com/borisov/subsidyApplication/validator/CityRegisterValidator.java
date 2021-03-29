@@ -1,5 +1,7 @@
 package com.borisov.subsidyApplication.validator;
 
+import com.borisov.subsidyApplication.validator.register.RealCityRegisterChecker;
+import com.borisov.subsidyApplication.validator.register.CityRegisterChecker;
 import com.borisov.subsidyApplication.dmain.AnswerCityRegister;
 import com.borisov.subsidyApplication.dmain.CityRegisterCheckerResponse;
 import com.borisov.subsidyApplication.dmain.StudentOrder;
@@ -24,7 +26,7 @@ public class CityRegisterValidator {
             CityRegisterCheckerResponse wans = personChecker.checkPerson(so.getWife());
             CityRegisterCheckerResponse cans = personChecker.checkPerson(so.getChild());
         } catch(CityRegisterException ex) {
-            ex.printStackTrace();
+            ex.printStackTrace(System.out);
         }        
         
         AnswerCityRegister ans = new AnswerCityRegister();
