@@ -1,10 +1,10 @@
 package com.borisov.subsidyApplication.validator.register;
 
 import com.borisov.subsidyApplication.validator.register.CityRegisterChecker;
-import com.borisov.subsidyApplication.dmain.Adult;
-import com.borisov.subsidyApplication.dmain.Child;
-import com.borisov.subsidyApplication.dmain.CityRegisterCheckerResponse;
-import com.borisov.subsidyApplication.dmain.Person;
+import com.borisov.subsidyApplication.domain.Adult;
+import com.borisov.subsidyApplication.domain.Child;
+import com.borisov.subsidyApplication.domain.CityRegisterCheckerResponse;
+import com.borisov.subsidyApplication.domain.Person;
 import com.borisov.subsidyApplication.exception.CityRegisterException;
 
 public class FakeCityRegisterChecker implements CityRegisterChecker {

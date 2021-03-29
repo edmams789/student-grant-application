@@ -1,7 +1,7 @@
 package com.borisov.subsidyApplication.validator;
 
-import com.borisov.subsidyApplication.dmain.AnswerStudent;
-import com.borisov.subsidyApplication.dmain.StudentOrder;
+import com.borisov.subsidyApplication.domain.AnswerStudent;
+import com.borisov.subsidyApplication.domain.StudentOrder;
 
 public class StudentValidator {
 

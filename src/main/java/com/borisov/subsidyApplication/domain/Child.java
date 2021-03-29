@@ -1,4 +1,4 @@
-package com.borisov.subsidyApplication.dmain;
+package com.borisov.subsidyApplication.domain;
 
 import java.time.LocalDate;
 

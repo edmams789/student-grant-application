@@ -1,9 +1,9 @@
 package com.borisov.subsidyApplication;
 
-import com.borisov.subsidyApplication.dmain.Address;
-import com.borisov.subsidyApplication.dmain.Adult;
-import com.borisov.subsidyApplication.dmain.Child;
-import com.borisov.subsidyApplication.dmain.StudentOrder;
+import com.borisov.subsidyApplication.domain.Address;
+import com.borisov.subsidyApplication.domain.Adult;
+import com.borisov.subsidyApplication.domain.Child;
+import com.borisov.subsidyApplication.domain.StudentOrder;
 import java.time.LocalDate;
 
 public class SaveStudentOrder {
@@ -50,15 +50,22 @@ public class SaveStudentOrder {
         wife.setStudentId("" + (200000 + id));
         wife.setAddress(address);
         //Ребёнок
-        Child child = new Child("Petrova", "Irina", "Viktorovna", LocalDate.of(2018, 6, 29));
-        child.setCertificateNumber("" + 300000 + id);
-        child.setIssueDate(LocalDate.of(2018, 4, 5));        
-        child.setIssueDepartment("Отдел ЗАГС № " + id);
-        child.setAddress(address);
+        Child child1 = new Child("Petrova", "Irina", "Viktorovna", LocalDate.of(2018, 6, 29));
+        child1.setCertificateNumber("" + 300000 + id);
+        child1.setIssueDate(LocalDate.of(2018, 7, 19));        
+        child1.setIssueDepartment("Отдел ЗАГС № " + id);
+        child1.setAddress(address);
+        //Ребёнок
+        Child child2 = new Child("Petrov", "Evgeniy", "Viktorovich", LocalDate.of(2018, 6, 29));
+        child2.setCertificateNumber("" + 400000 + id);
+        child2.setIssueDate(LocalDate.of(2018, 7, 19));        
+        child2.setIssueDepartment("Отдел ЗАГС № " + id);
+        child2.setAddress(address);
         
         so.setHusband(husband);
         so.setWife(wife);
-        so.setChild(child);
+        so.addChild(child1);
+        so.addChild(child2);
         
         return so;
     }

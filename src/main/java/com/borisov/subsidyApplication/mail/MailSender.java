@@ -1,6 +1,6 @@
 package com.borisov.subsidyApplication.mail;
 
-import com.borisov.subsidyApplication.dmain.StudentOrder;
+import com.borisov.subsidyApplication.domain.StudentOrder;
 
 public class MailSender {
     

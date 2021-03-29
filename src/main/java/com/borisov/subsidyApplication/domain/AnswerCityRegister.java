@@ -1,4 +1,4 @@
-package com.borisov.subsidyApplication.dmain;
+package com.borisov.subsidyApplication.domain;
 
 public class AnswerCityRegister {
 
