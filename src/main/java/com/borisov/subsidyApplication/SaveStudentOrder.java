@@ -71,7 +71,6 @@ public class SaveStudentOrder {
     }
     
     static void printStudentOrder(StudentOrder stOr) {
-        System.out.println(stOr.getStudentOrderId());
-        
+        System.out.println(stOr.getStudentOrderId());        
     }
 }

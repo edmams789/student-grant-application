@@ -8,13 +8,16 @@ import com.borisov.subsidyApplication.validator.StudentValidator;
 import com.borisov.subsidyApplication.domain.AnswerStudent;
 import com.borisov.subsidyApplication.domain.AnswerWedding;
 import com.borisov.subsidyApplication.domain.AnswerChildren;
-import com.borisov.subsidyApplication.domain.AnswerCityRegister;
+import com.borisov.subsidyApplication.domain.register.AnswerCityRegister;
 import com.borisov.subsidyApplication.domain.StudentOrder;
 import com.borisov.subsidyApplication.validator.ChildrenValidator;
 import com.borisov.subsidyApplication.validator.CityRegisterValidator;
 import com.borisov.subsidyApplication.validator.StudentValidator;
 import com.borisov.subsidyApplication.validator.StudentValidator;
 import com.borisov.subsidyApplication.validator.WeddingValidator;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 public class StudentOrderValidator {
 
@@ -39,20 +42,21 @@ public class StudentOrderValidator {
 
     public void checkAll() {
 
-        StudentOrder[] soArray = readStudentOrders();
+        List<StudentOrder> soList = readStudentOrders();
 
-        for(StudentOrder so : soArray) {
+        for(StudentOrder so : soList) {
             checkOneOrder(so);
         }
     }
 
-    public StudentOrder[] readStudentOrders() {
-        StudentOrder[] soArray = new StudentOrder[3];
+    public List<StudentOrder> readStudentOrders() {
+        List<StudentOrder> soList = new LinkedList<>();
 
-        for (int c = 0; c < soArray.length; c++) {
-            soArray[c] = SaveStudentOrder.buildStudentOrder(c);
+        for (int c = 0; c < 5; c++) {
+            StudentOrder so= SaveStudentOrder.buildStudentOrder(c);
+            soList.add(so);
         }
-        return soArray;
+        return soList;
     }
     
     public void checkOneOrder(StudentOrder so) {

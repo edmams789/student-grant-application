@@ -1,6 +1,6 @@
-package com.borisov.subsidyApplication.domain;
+package com.borisov.subsidyApplication.domain.register;
 
-public class CityRegisterCheckerResponse { // ответ из городского реестра
+public class CityRegisterResponse { // ответ из городского реестра
     
     private boolean existing;
     private Boolean temporal; //true - false - null

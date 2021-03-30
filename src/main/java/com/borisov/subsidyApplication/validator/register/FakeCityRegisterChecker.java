@@ -3,7 +3,7 @@ package com.borisov.subsidyApplication.validator.register;
 import com.borisov.subsidyApplication.validator.register.CityRegisterChecker;
 import com.borisov.subsidyApplication.domain.Adult;
 import com.borisov.subsidyApplication.domain.Child;
-import com.borisov.subsidyApplication.domain.CityRegisterCheckerResponse;
+import com.borisov.subsidyApplication.domain.register.CityRegisterResponse;
 import com.borisov.subsidyApplication.domain.Person;
 import com.borisov.subsidyApplication.exception.CityRegisterException;
 
@@ -16,8 +16,8 @@ public class FakeCityRegisterChecker implements CityRegisterChecker {
     private static final String ERROR_1 = "1002";
     private static final String ERROR_2 = "2002";
     
-        public CityRegisterCheckerResponse checkPerson(Person person) throws CityRegisterException{
-            CityRegisterCheckerResponse res = new CityRegisterCheckerResponse();
+        public CityRegisterResponse checkPerson(Person person) throws CityRegisterException{
+            CityRegisterResponse res = new CityRegisterResponse();
             if(person instanceof Adult) {
                 System.out.println("ADULT");
                 Adult t = (Adult) person;
