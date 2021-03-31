@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CityRegisterValidator {
 
-    public static final String IN_CODE = "NO_GRN" ;
+    public static final String IN_CODE = "NO_GRN";
 
     private CityRegisterChecker personChecker;
 
@@ -41,17 +41,20 @@ public class CityRegisterValidator {
         try {
             CityRegisterResponse tmp = personChecker.checkPerson(person);
             status = tmp.isExisting() ? AnswerCityRegisterItem.CityStatus.YES : AnswerCityRegisterItem.CityStatus.NO;
-        } catch (CityRegisterException ex) {
+        } catch (CityRegisterException | TransportException ex) {
             ex.printStackTrace(System.out);
             status = AnswerCityRegisterItem.CityStatus.ERROR;
-            error = new AnswerCityRegisterItem.CityError(ex.getCode(), ex.getMessage());
-        } catch (TransportException ex) {
-            ex.printStackTrace(System.out);
-            status = AnswerCityRegisterItem.CityStatus.ERROR;
-            error = new AnswerCityRegisterItem.CityError(IN_CODE, ex.getMessage());
+            if (ex instanceof CityRegisterException) {
+                CityRegisterException e = (CityRegisterException) ex;
+                error = new AnswerCityRegisterItem.CityError(e.getCode(), ex.getMessage());
+            }
+            if (ex instanceof TransportException) {
+                TransportException e = (TransportException) ex;
+                error = new AnswerCityRegisterItem.CityError(IN_CODE, ex.getMessage());
+            }
         }
         AnswerCityRegisterItem ans = new AnswerCityRegisterItem(status, person, error);
-        
+
         return ans;
     }
 }
