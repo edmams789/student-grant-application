@@ -2,16 +2,20 @@ package com.borisov.subsidyApplication.exception;
 
 public class CityRegisterException extends Exception {
 
-    public CityRegisterException() {
-    }
-
-    public CityRegisterException(String message) {
-        super(message);
-    }
-
-    public CityRegisterException(String message, Throwable cause) {
-        super(message, cause);
-    }
+    private String code;
     
+   public CityRegisterException(String code, String message) {
+        super(message);
+        this.code = code;
+    }
+
+    public CityRegisterException(String code, String message, Throwable cause) {
+        super(message, cause);
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }   
     
 }

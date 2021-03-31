@@ -9,15 +9,13 @@ import com.borisov.subsidyApplication.domain.register.CityRegisterResponse;
 import com.borisov.subsidyApplication.domain.StudentOrder;
 import com.borisov.subsidyApplication.domain.register.AnswerCityRegisterItem;
 import com.borisov.subsidyApplication.exception.CityRegisterException;
+import com.borisov.subsidyApplication.exception.TransportException;
 import java.util.Iterator;
 import java.util.List;
 
 public class CityRegisterValidator {
 
-    private String hostName;
-    private int port;
-    private String login;
-    private String password;
+    public static final String IN_CODE = "NO_GRN" ;
 
     private CityRegisterChecker personChecker;
 
@@ -38,11 +36,22 @@ public class CityRegisterValidator {
     }
 
     private AnswerCityRegisterItem checkPerson(Person person) {
+        AnswerCityRegisterItem.CityStatus status = null;
+        AnswerCityRegisterItem.CityError error = null;
         try {
-            CityRegisterResponse cans = personChecker.checkPerson(person);
+            CityRegisterResponse tmp = personChecker.checkPerson(person);
+            status = tmp.isExisting() ? AnswerCityRegisterItem.CityStatus.YES : AnswerCityRegisterItem.CityStatus.NO;
         } catch (CityRegisterException ex) {
             ex.printStackTrace(System.out);
+            status = AnswerCityRegisterItem.CityStatus.ERROR;
+            error = new AnswerCityRegisterItem.CityError(ex.getCode(), ex.getMessage());
+        } catch (TransportException ex) {
+            ex.printStackTrace(System.out);
+            status = AnswerCityRegisterItem.CityStatus.ERROR;
+            error = new AnswerCityRegisterItem.CityError(IN_CODE, ex.getMessage());
         }
-        return null;
+        AnswerCityRegisterItem ans = new AnswerCityRegisterItem(status, person, error);
+        
+        return ans;
     }
 }
