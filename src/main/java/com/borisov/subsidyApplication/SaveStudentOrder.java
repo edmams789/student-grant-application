@@ -4,13 +4,29 @@ import com.borisov.subsidyApplication.domain.Address;
 import com.borisov.subsidyApplication.domain.Adult;
 import com.borisov.subsidyApplication.domain.Child;
 import com.borisov.subsidyApplication.domain.StudentOrder;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 
-public class SaveStudentOrder {
+public class SaveStudentOrder {    
 
-    public static void main(String[] args) {
-        buildStudentOrder(10);
+    public static void main(String[] args) throws Exception {
+        //Подключаемся к базе
+        Class.forName("org.postgresql.Driver"); //регистрация драйвера в подсистеме jdbc
+        Connection con = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/jc_student", "postgres", "password");
+        //Создаём запрос
+        Statement stmt = con.createStatement();
+        //Выполняем запрос
+        ResultSet rs = stmt.executeQuery("SELECT * FROM jc_street");
+        while(rs.next()) {
+            System.out.println(rs.getLong(1) + " : " + rs.getString(2));
+        }
         
+        
+//        StudentOrder s = buildStudentOrder(10);
 //        StudentOrder so = new StudentOrder();
 //        System.out.println("SaveStudentOrder is running");
 //        long ans = saveStudentOrder(so);
