@@ -72,6 +72,8 @@ public class StudentOrder {
     public void setMarriageOffice(RegisterOffice marriageOffice) {
         this.marriageOffice = marriageOffice;
     }
+
+
     
     
 }
