@@ -1,5 +1,6 @@
 package com.borisov.subsidyApplication;
 
+import com.borisov.subsidyApplication.dao.DictionaryDaoImpl;
 import com.borisov.subsidyApplication.domain.Address;
 import com.borisov.subsidyApplication.domain.Adult;
 import com.borisov.subsidyApplication.domain.Child;
@@ -10,10 +11,15 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.List;
 
 public class SaveStudentOrder {    
 
-    public static void main(String[] args) throws Exception {        
+    public static void main(String[] args) throws Exception {
+        List<Street> d = new DictionaryDaoImpl().findStreets("са");
+        for(Street s : d) {
+            System.out.println(s.getStreetName());
+        }
         
 //        StudentOrder s = buildStudentOrder(10);
 //        StudentOrder so = new StudentOrder();
