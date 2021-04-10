@@ -40,7 +40,7 @@ public class SaveStudentOrder {
         so.setStudentOrderId(id);          
         so.setMarriageCertificateId("" + (123456000 + id));
         so.setMarriageDate(LocalDate.of(2016, 7, 4));
-        so.setMarriageOffice("Отдел ЗАГС");
+//        so.setMarriageOffice("Отдел ЗАГС");
         
         Street street = new Street(1L, "First street");
         
@@ -51,7 +51,7 @@ public class SaveStudentOrder {
         husband.setPassportSeria("" + (1000 + id));
         husband.setPassportNumber("" + (100000 + id));
         husband.setIssueDate(LocalDate.of(2017, 9, 15));
-        husband.setIssueDepartment("Office police № " + id);
+//        husband.setIssueDepartment("Office police № " + id);
         husband.setStudentId("" + (100000 + id));
         husband.setAddress(address);
         //Жена
@@ -59,20 +59,20 @@ public class SaveStudentOrder {
         wife.setPassportSeria("" + (2000 + id));
         wife.setPassportNumber("" + (200000 + id));
         wife.setIssueDate(LocalDate.of(2018, 4, 5));
-        wife.setIssueDepartment("Office police № " + id);
+//        wife.setIssueDepartment("Office police № " + id);
         wife.setStudentId("" + (200000 + id));
         wife.setAddress(address);
         //Ребёнок
         Child child1 = new Child("Petrova", "Irina", "Viktorovna", LocalDate.of(2018, 6, 29));
         child1.setCertificateNumber("" + 300000 + id);
         child1.setIssueDate(LocalDate.of(2018, 7, 19));        
-        child1.setIssueDepartment("Отдел ЗАГС № " + id);
+//        child1.setIssueDepartment("Отдел ЗАГС № " + id);
         child1.setAddress(address);
         //Ребёнок
         Child child2 = new Child("Petrov", "Evgeniy", "Viktorovich", LocalDate.of(2018, 6, 29));
         child2.setCertificateNumber("" + 400000 + id);
         child2.setIssueDate(LocalDate.of(2018, 7, 19));        
-        child2.setIssueDepartment("Отдел ЗАГС № " + id);
+//        child2.setIssueDepartment("Отдел ЗАГС № " + id);
         child2.setAddress(address);
         
         so.setHusband(husband);
