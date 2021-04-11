@@ -1,5 +1,6 @@
 package com.borisov.subsidyApplication.config;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -14,7 +15,8 @@ public class Config {
     public synchronized static String getProperty(String name) {
         if (properties.isEmpty()) {
             //мы хотим взять текущий поток байтов, который находится в файле dao.properties       
-            try (InputStream is = Config.class.getClassLoader().getResourceAsStream("dao.properties")) {
+//            try (InputStream is = Config.class.getClassLoader().getResourceAsStream("src/main/resources/dao.properties")) {
+            try (FileInputStream is = new FileInputStream("src/main/resources/dao.properties")) {
                 
                 properties.load(is);
                 
