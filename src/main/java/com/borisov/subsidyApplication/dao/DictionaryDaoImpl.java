@@ -27,7 +27,8 @@ public class DictionaryDaoImpl implements DictionaryDao {
 
     private static final String GET_AREA
                 = "SELECT * FROM jc_country_struct WHERE area_id LIKE ? AND area_id <> ?";
-
+    
+    // TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
         //Подключаемся к базе
         Connection con = DriverManager.getConnection(
@@ -42,10 +43,8 @@ public class DictionaryDaoImpl implements DictionaryDao {
         List<Street> result = new LinkedList<>();
 
         try (Connection con = getConnection();
-                    //Создаём запрос
-                    //более лучший вариант
-                    //PreparedStatement - обладает свойством котор. позволяют ему устанавливать параметры                        
-                    PreparedStatement stmt = con.prepareStatement(GET_STREET)) {
+                    //Создаём запрос     
+            PreparedStatement stmt = con.prepareStatement(GET_STREET)) {
 
             stmt.setString(1, "%" + pattern + "%"); // в запросе (GET_STREET) на 1-й параметр (?) устанавлив. паттерн
 
