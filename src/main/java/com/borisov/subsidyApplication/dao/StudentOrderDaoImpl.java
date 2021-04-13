@@ -58,22 +58,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
             //Header
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
             stmt.setTimestamp(2, java.sql.Timestamp.valueOf(LocalDateTime.now()));
-            //Husband
-            Adult husband = so.getHusband();
-            stmt.setString(3, husband.getSurname());
-            stmt.setString(4, husband.getGivenName());
-            stmt.setString(5, husband.getPatronymic());
-            stmt.setDate(6, java.sql.Date.valueOf(husband.getDateOfBirth()));
-            stmt.setString(7, husband.getPassportSeria());
-            stmt.setString(8, husband.getPassportNumber());
-            stmt.setDate(9, java.sql.Date.valueOf(husband.getIssueDate()));
-            stmt.setLong(10, husband.getIssueDepartment().getOfficeId());
-            Address h_address = husband.getAddress();
-            stmt.setString(11, h_address.getPostCode());
-            stmt.setLong(12, h_address.getStreet().getStreetCode());
-            stmt.setString(13, h_address.getBuilding());
-            stmt.setString(14, h_address.getExtension());
-            stmt.setString(15, h_address.getApartment());
+            //Husband and Wife
+            setParamsForAdult(stmt, 3, so.getHusband());
+            setParamsForAdult(stmt, 16, so.getWife());
             //Wife
             Adult wife = so.getWife();
             stmt.setString(16, wife.getSurname());
@@ -108,4 +95,21 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
         }
         return result;
     }    
+
+    private void setParamsForAdult(final PreparedStatement stmt, int start, Adult adult) throws SQLException {
+        stmt.setString(start, adult.getSurname());
+        stmt.setString(start + 1, adult.getGivenName());
+        stmt.setString(start + 2, adult.getPatronymic());
+        stmt.setDate(start +3, java.sql.Date.valueOf(adult.getDateOfBirth()));
+        stmt.setString(start + 4, adult.getPassportSeria());
+        stmt.setString(start + 5, adult.getPassportNumber());
+        stmt.setDate(start + 6, java.sql.Date.valueOf(adult.getIssueDate()));
+        stmt.setLong(start + 7, adult.getIssueDepartment().getOfficeId());
+        Address h_address = adult.getAddress();
+        stmt.setString(start + 8, h_address.getPostCode());
+        stmt.setLong(start + 9, h_address.getStreet().getStreetCode());
+        stmt.setString(start + 10, h_address.getBuilding());
+        stmt.setString(start + 11, h_address.getExtension());
+        stmt.setString(start + 12, h_address.getApartment());
+    }
 }
