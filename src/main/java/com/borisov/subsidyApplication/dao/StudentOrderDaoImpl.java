@@ -121,22 +121,15 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
     private void saveChildren(Connection con, StudentOrder so, Long soId) throws SQLException{
         
         try (PreparedStatement stmt = con.prepareStatement(INSERT_CHILD)) {
-//            int counter = 0;
+
             for (Child child : so.getChildren()) {
                 stmt.setLong(1, soId);
                 setParamsForChild(stmt, child);
-//                stmt.executeUpdate();
-                stmt.addBatch(); //добавл. команду в пакет котор. копит данные 
-//                counter++;
-//                if (counter > 10000) {
-//                    stmt.executeBatch();
-//                    counter = 0;
-//                }
-//            }        
-//            if (counter > 0) {
-                stmt.executeBatch(); //исполняет данные накопленные в пакете 
-            }            
-        }
+
+                stmt.addBatch(); //добавл. команду в пакет котор. копит данные                 
+            }       
+            stmt.executeBatch(); //исполняет данные накопленные в пакете 
+        }        
     }
         
     private void setParamsForAdult(final PreparedStatement stmt, int start, Adult adult) throws SQLException {
