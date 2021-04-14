@@ -64,6 +64,10 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
         try (Connection con = getConnection();
                     //Создаём запрос     
             PreparedStatement stmt = con.prepareStatement(INSERT_ORDER, new String[] {"student_order_id"})) {
+            
+            con.setAutoCommit(false); //чтобы запустить транзакцию
+            //при true каждая отдельная команда выполняется в рамках своей маленькой транзакции
+            try {
             //Header
             stmt.setInt(1, StudentOrderStatus.START.ordinal());
             stmt.setTimestamp(2, java.sql.Timestamp.valueOf(LocalDateTime.now()));
@@ -100,6 +104,13 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
             gkRs.close();
             
             saveChildren(con, so, result);
+            
+            con.commit(); //управление транзакцией (принятие изменений)
+            
+            } catch (SQLException ex) {                
+                con.rollback();//отменяет все этапы транзакции
+                throw ex;
+            }            
             
         } catch (SQLException ex) {
             throw new DaoException(ex);
