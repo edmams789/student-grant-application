@@ -11,6 +11,7 @@ import com.borisov.subsidyApplication.domain.PassportOffice;
 import com.borisov.subsidyApplication.domain.RegisterOffice;
 import com.borisov.subsidyApplication.domain.Street;
 import com.borisov.subsidyApplication.domain.StudentOrder;
+import com.borisov.subsidyApplication.domain.University;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -93,6 +94,9 @@ public class SaveStudentOrder {
         husband.setIssueDepartment(po1);
         husband.setStudentId("" + (100000 + id));
         husband.setAddress(address);
+        husband.setUniversity(new University(2L, ""));
+        husband.setStudentId("HH12345");
+        
         //Жена
         Adult wife = new Adult("Petrova", "Veronika", "Alekseevna", LocalDate.of(1998, 3, 12));
         wife.setPassportSeria("" + (2000 + id));
@@ -102,6 +106,9 @@ public class SaveStudentOrder {
         wife.setIssueDepartment(po2);
         wife.setStudentId("" + (200000 + id));
         wife.setAddress(address);
+        wife.setUniversity(new University(1L, ""));
+        wife.setStudentId("WW12345");
+        
         //Ребёнок
         Child child1 = new Child("Petrova", "Irina", "Viktorovna", LocalDate.of(2018, 6, 29));
         child1.setCertificateNumber("" + 300000 + id);
@@ -109,6 +116,7 @@ public class SaveStudentOrder {
         RegisterOffice ro2 = new RegisterOffice(2L, "", "");
         child1.setIssueDepartment(ro2);
         child1.setAddress(address);
+        
         //Ребёнок
         Child child2 = new Child("Petrov", "Evgeniy", "Viktorovich", LocalDate.of(2018, 6, 29));
         child2.setCertificateNumber("" + 400000 + id);
