@@ -5,6 +5,7 @@ import com.borisov.subsidyApplication.domain.Address;
 import com.borisov.subsidyApplication.domain.Adult;
 import com.borisov.subsidyApplication.domain.Child;
 import com.borisov.subsidyApplication.domain.Person;
+import com.borisov.subsidyApplication.domain.RegisterOffice;
 import com.borisov.subsidyApplication.domain.Street;
 import com.borisov.subsidyApplication.domain.StudentOrder;
 import com.borisov.subsidyApplication.domain.StudentOrderStatus;
@@ -14,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
@@ -45,6 +47,9 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
                 + "c_register_office_id, c_post_index, c_street_code, c_building, "
                 + "c_extension, c_apartment)" 
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+    
+    private static final String SELECT_ORDERS = 
+                "SELECT * FROM jc_student_order WHERE student_order_status = 0 ORDER BY student_order_date";
     
     // TODO refactoring - make one method
     private Connection getConnection() throws SQLException {
@@ -152,6 +157,49 @@ public class StudentOrderDaoImpl implements StudentOrderDao{
         stmt.setString(start + 3, h_address.getExtension());
         stmt.setString(start + 4, h_address.getApartment());
     }
+
+    @Override
+    public List<StudentOrder> getStudentOrders() throws DaoException {
+        List<StudentOrder> result = new LinkedList<>();
+        
+         try (Connection con = getConnection();
+                    //Создаём запрос     
+            PreparedStatement stmt = con.prepareStatement(SELECT_ORDERS)) {
+             
+             ResultSet rs = stmt.executeQuery();
+             
+             while (rs.next()) {
+                 StudentOrder so = new StudentOrder();
+                 fillStudentOrder(rs, so);
+                 fillMarriage(rs, so);
+                 
+                 result.add(so);
+             }
+             
+             rs.close();
+         } catch(SQLException ex) {
+             throw new DaoException(ex);
+         }
+        
+        return result;
+    }
+
+    private void fillStudentOrder(ResultSet rs, StudentOrder so) throws SQLException {
+        so.setStudentOrderId(rs.getLong("student_order_id"));
+        so.setStudentOrderDate(rs.getTimestamp("student_order_date").toLocalDateTime());
+        so.setStudentOrderStatus(StudentOrderStatus.fromValue(rs.getInt("student_order_status")));
+    }
+
+    private void fillMarriage(ResultSet rs, StudentOrder so) throws SQLException{
+        so.setMarriageCertificateId(rs.getString("certificate_id"));
+        so.setMarriageDate(rs.getDate("marriage_date").toLocalDate());
+        
+        Long roId = rs.getLong("register_office_id");
+        RegisterOffice ro = new RegisterOffice(roId, "", "");
+        so.setMarriageOffice(ro);
+    }
+
+    
 
     
 }
